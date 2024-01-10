@@ -10,6 +10,7 @@
 
 
 (def element TargetLockItem (_markerEntity:gfx) layout=true
+	(bindcall externalCall 'inputMapping.onAction' "['createParamsForAllShipsInBattle', {}]" on='addedToStage')
 	(scope
 		(macro GET_MARKER_ENTITY_COMPONENT 'target')
 		(var targetFlags:number = "targetComponent ? targetComponent.flags : 0" (event "targetComponent.evChanged") (event "targetComponent.evFlagsChanged"))
