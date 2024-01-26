@@ -39,6 +39,10 @@
 		(var targetPosX:number = "targetPosition.x" (event "evEnterFrame"))
 		(var targetPosY:number = "targetPosition.y" (event "evEnterFrame"))
 		
+		(var battleDataEntityCollection:gfx = "$datahub.getCollection(CC.battleData)")
+		(var battleDataEntity:gfx = "battleDataEntityCollection.items[0]")
+		(var mapSize:number = "battleDataEntity.battleInfo.mapName in MAPSIZE_MAPSIZE ? MAPSIZE_MAPSIZE[battleDataEntity.battleInfo.mapName] : 30")
+		
 		(var timerEntity:gfx = "$datahub.getSingleEntity(CC.timer)")
 		(var battleTimer:gfx = "$datahub.getSingleComponent(CC.battleTimer)")
 		
@@ -72,7 +76,7 @@
 		(var posYDiff:number = "posYCur - posYPrev")
 
 		(var sqrDistDiff:number = "pow(posXDiff, 2) + pow(posYDiff, 2)")
-		(var Speed:number = "0.62*sqrt(sqrDistDiff)")
+		(var Speed:number = "0.0172*sqrt(sqrDistDiff)*mapSize")
 
 		(var currentYawAngle:number = "abs(radToGrad(atan2(posXDiff, -posYDiff)) - round(targetYaw))")
 
