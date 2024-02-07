@@ -76,7 +76,7 @@
 		(var posYDiff:number = "posYCur - posYPrev")
 
 		(var sqrDistDiff:number = "pow(posXDiff, 2) + pow(posYDiff, 2)")
-		(var Speed:number = "0.0172*sqrt(sqrDistDiff)*mapSize")
+		(var Speed:number = "0.0193*sqrt(sqrDistDiff)*mapSize")
 
 		(var currentYawAngle:number = "abs(radToGrad(atan2(posXDiff, -posYDiff)) - round(targetYaw))")
 
