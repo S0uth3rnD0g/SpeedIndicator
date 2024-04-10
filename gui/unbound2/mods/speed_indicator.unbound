@@ -17,8 +17,9 @@
 
 		(var isTargetLocked:bool = "(targetFlags & LOCKABLE_WEAPONS) > 0")
 		
+		(var ttxCol:gfx = "$datahub.getCollection(CC.mods_ShipParamsInBattle)")
 
-		(var entityTTX:gfx = "$datahub.getPrimaryEntity(CC.mods_ShipParamsInBattle, _markerEntity.avatar.id)")
+		(var entityTTX:gfx = "$datahub.getPrimaryEntity(CC.mods_ShipParamsInBattle, _markerEntity.avatar.id)" (event "ttxCol.evAdded"))
 		
 		(var isAirDefense:bool = "targetFlags & (1 << SC.Ships.SHIP_WEAPON_TYPES.AIRDEFENCE)")
 		(var isATBA:bool = "targetFlags & (1 << SC.Ships.SHIP_WEAPON_TYPES.ATBA)")
@@ -39,17 +40,14 @@
 		(var targetPosX:number = "targetPosition.x" (event "evEnterFrame"))
 		(var targetPosY:number = "targetPosition.y" (event "evEnterFrame"))
 		
-		(var battleDataEntityCollection:gfx = "$datahub.getCollection(CC.battleData)")
-		(var battleDataEntity:gfx = "battleDataEntityCollection.items[0]")
-		(var mapSize:number = "battleDataEntity.battleInfo.mapName in MAPSIZE_MAPSIZE ? MAPSIZE_MAPSIZE[battleDataEntity.battleInfo.mapName] : 30")
-		
+		(macro GET_MAP_SIZE)
 		(var timerEntity:gfx = "$datahub.getSingleEntity(CC.timer)")
 		(var battleTimer:gfx = "$datahub.getSingleComponent(CC.battleTimer)")
 		
 		(var incrementCount:number = "0" watch=false)
 		(bind incrementCount "incrementCount+1" init=false watch=false (event "timerEntity.timer.evFrequent"))
 		
-		# speedArc calculation 0-stop, 1-slowly forward, 2-forward, 3-backward
+		# speedArc calculation
 		(event evspeedArcUpdate)
 		(var posXList:array = [round(targetPosX * 100000),round(targetPosX * 100000),round(targetPosX * 100000),round(targetPosX * 100000)])
 		(bind posXList "$event.posXList" init=false watch=false (event "evspeedArcUpdate"))
