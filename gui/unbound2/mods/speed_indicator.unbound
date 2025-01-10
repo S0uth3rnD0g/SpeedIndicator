@@ -40,9 +40,7 @@
 		(var targetPosX:number = "targetPosition.x" (event "evEnterFrame"))
 		(var targetPosY:number = "targetPosition.y" (event "evEnterFrame"))
 		
-		(macro GET_MAP_SIZE)
 		(var timerEntity:gfx = "$datahub.getSingleEntity(CC.timer)")
-		(var battleTimer:gfx = "$datahub.getSingleComponent(CC.battleTimer)")
 		
 		(var incrementCount:number = "0" watch=false)
 		(bind incrementCount "incrementCount+1" init=false watch=false (event "timerEntity.timer.evFrequent"))
@@ -72,9 +70,13 @@
 		(var posYPrev:number = "posYCur" watch=false)
 		(bind posYPrev "$event.posYPrev" init=false watch=false (event "evspeedArcChanged"))
 		(var posYDiff:number = "posYCur - posYPrev")
-
+		
+		# Map Size
+		(var cameraComponent:gfx = "$datahub.getSingleComponent(CC.camera)")
+		(var mapSize:number = "cameraComponent.visibilityRange / cameraComponent.visibilityRangePerc" watch=false)
+		
 		(var sqrDistDiff:number = "pow(posXDiff, 2) + pow(posYDiff, 2)")
-		(var Speed:number = "0.0195*sqrt(sqrDistDiff)*mapSize")
+		(var Speed:number = "0.0193*sqrt(sqrDistDiff)*mapSize")
 
 		(var currentYawAngle:number = "abs(radToGrad(atan2(posXDiff, -posYDiff)) - round(targetYaw))")
 

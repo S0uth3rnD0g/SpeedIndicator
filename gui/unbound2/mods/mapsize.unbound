@@ -1,7 +1,0 @@
-(def macro GET_MAP_SIZE ()
-    (var selfAvatarGetMapSizeMacro:gfx = "$datahub.getSingleEntity(CC.playerAvatar)")
-    (var radiusEntityGetMapSizeMacro:gfx = "$datahub.getPrimaryEntity(CC.parameter, toString(selfAvatarGetMapSizeMacro.id) + '_visibilityRange')")
-    (var radiusValGetMapSizeMacro:number = "radiusEntityGetMapSizeMacro.parameter.currentValue" watch=false)
-    (var radiusGetMapSizeMacro:number = "radiusEntityGetMapSizeMacro.circle.radius" watch=false)
-    (var mapSize:number = "round(radiusValGetMapSizeMacro / radiusGetMapSizeMacro)" watch=false)
-)
