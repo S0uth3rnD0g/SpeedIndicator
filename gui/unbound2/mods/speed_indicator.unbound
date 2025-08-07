@@ -9,13 +9,13 @@
 })
 
 
-(def element TargetLockItem (_markerEntity:gfx) layout=true
+(def element TargetLockItem (_markerEntity:gfx, _selectedWeapon:number) layout=true
 	(bindcall externalCall 'inputMapping.onAction' "['createParamsForAllShipsInBattle', {}]" on='addedToStage')
 	(scope
 		(macro GET_MARKER_ENTITY_COMPONENT 'target')
 		(var targetFlags:number = "targetComponent ? targetComponent.flags : 0" (event "targetComponent.evChanged") (event "targetComponent.evFlagsChanged"))
 
-		(var isTargetLocked:bool = "(targetFlags & LOCKABLE_WEAPONS) > 0")
+		(var isTargetLocked:bool = "(targetFlags & LOCKABLE_WEAPONS & (1 << _selectedWeapon)) > 0")
 		
 		(var ttxCol:gfx = "$datahub.getCollection(CC.mods_ShipParamsInBattle)")
 
