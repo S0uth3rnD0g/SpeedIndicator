@@ -84,7 +84,7 @@
 		(bind speedArc "$event.speedArc" init=false watch=false (event "evspeedArcChanged"))
 		(var course:number=-1)
 		(bind course "$event.course" init=false watch=false (event "evspeedArcChanged"))
-		(var targetMaxSpeed:number = "entityTTX.mods_ShipParamsInBattle.shipTTX.mobility.speed.value")
+		(var targetMaxSpeed:number = "entityTTX ? entityTTX.mods_ShipParamsInBattle.shipTTX.mobility.speed.value : 30")
 		
 		(var targetVisiblePrev:bool=false watch=false)
 		(bind targetVisiblePrev "$event.targetVisiblePrev" init=false watch=false (event "evspeedArcChanged"))
