@@ -47,20 +47,18 @@
 		
 		# speedArc calculation
 		(event evspeedArcUpdate)
-		(var posXRounded:number = "round(targetPosX * 100000)")
-		(var posXList:array = [posXRounded,posXRounded,posXRounded,posXRounded])
+		(var posXList:array = [0,0,0,0])
 		(bind posXList "$event.posXList" init=false watch=false (event "evspeedArcUpdate"))
 		(var posXCur:number = "(posXList[0]+posXList[1]+posXList[2]+posXList[3])/4" watch=false)
 		(bind posXCur "$event.posXCur" init=false watch=false (event "evspeedArcUpdate"))
 		
-		(var posYRounded:number = "round(targetPosY * 100000)")
-		(var posYList:array = [posYRounded,posYRounded,posYRounded,posYRounded])
+		(var posYList:array = [0,0,0,0])
 		(bind posYList "$event.posYList" init=false watch=false (event "evspeedArcUpdate"))
         (var posYCur:number = "(posYList[0]+posYList[1]+posYList[2]+posYList[3])/4" watch=false)
 		(bind posYCur "$event.posYCur" init=false watch=false (event "evspeedArcUpdate"))
 
 		(dispatch evspeedArcUpdate args = "{posXCur: 0.4*(posXList[0]+(1 - 0.4)*posXList[1]+pow(1 - 0.4, 2)*posXList[2]+pow(1 - 0.4, 3)*posXList[3]), posYCur: 0.4*(posYList[0]+(1 - 0.4)*posYList[1]+pow(1 - 0.4, 2)*posYList[2]+pow(1 - 0.4, 3)*posYList[3]),
-										posXList: [posXRounded,posXList[0],posXList[1],posXList[2]], posYList: [posYRounded,posYList[0],posYList[1],posYList[2]]
+										posXList: [round(targetPosX * 100000),posXList[0],posXList[1],posXList[2]], posYList: [round(targetPosY * 100000),posYList[0],posYList[1],posYList[2]]
 										}" (bind trigger "floor(incrementCount / MOD_SI_SETTINGS.cycle)")
 		)
 		
